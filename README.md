@@ -68,3 +68,32 @@ pick_rep_set.py -i picked-otus-97clustered.txt -f all-samples-spades-contigs.fas
 ```
 (http://qiime.org/scripts/pick_rep_set.html)
 
+3. Taxonomic Assignment with BLAST using BROCC script
+- Because this dataset contained samples that had pooled 18S and 16S amplicons, taxonomy could only be assigned with blast
+
+The brocc tool was used to assign taxonomy, these commands are copied from [@kylebittinger](https://github.com/kylebittinger/brocc)
+
+Create a local version on the NCBI's database
+```bash
+create_local_taxonomy_db.py
+```
+
+Blast the repset fasta file with the following parameters. The important step is to make sure 100 blast hits are generated per query, as this will be used to assign taxonomic depth.
+```bash
+blastn -query <SEQUENCES (FASTA FORMAT)> -evalue 1e-5 -outfmt 7 -db nt -out <BLAST RESULTS> -num_threads 8 -max_target_seqs 100
+```
+
+Run the brocc.py script to parse the blast results and assign taxonomy
+```bash
+brocc.py -i <SEQUENCES (FASTA FORMAT)> -b <BLAST RESULTS> -o <OUTPUT DIRECTORY>
+```
+
+4. Create an otu-table (aka species matrix) with assigned taxonomy
+```bash
+make_otu_table.py -i picked-otus-97clustered.txt -t Standard_Taxonomy.txt -o otu-table-97clustered.biom
+```
+- Note: the <Standard_Taxonomy.txt> is the default output naming from brocc.py
+
+
+
+
