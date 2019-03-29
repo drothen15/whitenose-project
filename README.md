@@ -47,5 +47,24 @@ awk 'NR%4 == 2 {lengths[length($0)]++ ; counter++} END {for (l in lengths) {prin
 ```
 
 # Input into QIIMEv1.9 and processing of data.
+-To activate the QIIME 1.9 environment in Cornell's HPC refer to the Cornell BioHPC website (https://biohpc.cornell.edu/lab/userguide.aspx?a=software&i=30#c)
 
-1. Concatenate Assembly Files and Clustering into â‰¥
+
+1. Concatenate Assembly Files and Clustering into â‰97% OTUS
+```bash
+cat *.fasta > all-samples-spades-contigs.fasta
+```
+
+
+```bash
+pick_otus.py -i all-samples-spades-contigs.fasta -o picked-otus-97clustered
+```
+- I used default parameters in the step, which includes UCLUST for clustering and 97% similarity threshold.
+- There are many optional parameters refer to (http://qiime.org/scripts/pick_otus.html) for more information
+
+2. Pick a reperesentative sequence from each clustered group for taxonomic assignment
+```bash
+pick_rep_set.py -i picked-otus-97clustered.txt -f all-samples-spades-contigs.fasta -o rep-set-97clustered.fasta
+```
+(http://qiime.org/scripts/pick_rep_set.html)
+
