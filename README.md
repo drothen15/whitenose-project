@@ -46,5 +46,6 @@ awk 'NR%4 == 2 {lengths[length($0)]++ ; counter++} END {for (l in lengths) {prin
 ./spades.cmds
 ```
 
-2. Input into QIIMEv1.9 and processing of data.
+# Input into QIIMEv1.9 and processing of data.
 
+1. Concatenate Assembly Files and Clustering into ≥
