@@ -4,7 +4,7 @@ Descibed here is a workflow of bat microbiome study that contained pooled large 
 
 - Dataset Challenges
 
-1. Each sample contained a PCR amplified full-length 16S and 18S phlyogenetic marker (~1.5kb).
+1. Each sample contained a PCR amplified full-length 16S and 18S phlyogenetic marker.
 2. These phylogenetic markers were then pooled per sample and library prepped with unique barcodes per sample
 3. Determination of best data analysis strategy without introducing too many biases
 
@@ -50,7 +50,7 @@ awk 'NR%4 == 2 {lengths[length($0)]++ ; counter++} END {for (l in lengths) {prin
 -To activate the QIIME 1.9 environment in Cornell's HPC refer to the Cornell BioHPC website (https://biohpc.cornell.edu/lab/userguide.aspx?a=software&i=30#c)
 
 
-1. Concatenate Assembly Files and Clustering into �97% OTUS
+1. Concatenate Assembly Files and Clustering into â‰97% OTUS
 ```bash
 cat *.fasta > all-samples-spades-contigs.fasta
 ```
