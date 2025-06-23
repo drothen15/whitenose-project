@@ -94,6 +94,11 @@ make_otu_table.py -i picked-otus-97clustered.txt -t Standard_Taxonomy.txt -o otu
 ```
 - Note: the <Standard_Taxonomy.txt> is the default output naming from brocc.py
 
+# Downstream analysis
+- OTU table was parsed to remove singletons.
+- Bat microbiome otu table consisted of Bacteria, Fungi, and non-metazoan eukaryotes.
+- See < > publication for full analysis and intpretation of bat microbiome data. 
+
 
 
 
